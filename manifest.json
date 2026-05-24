@@ -15,8 +15,7 @@
   },
   "permissions": [
     "bookmarks",
-    "favicon",
-    "tabs"
+    "favicon"
   ],
   "optional_host_permissions": [
     "file:///"

@@ -14,32 +14,42 @@
   <div>
     <input type="checkbox" id="modal-toggle" />
     <div class="modal">
-      <div class="modal-box">
-        <div id="edit_bookmark" class="modal-content">
-          <h3>Edit Bookmark</h3>
-          <fieldset>
-            <label for="edit_bookmark_name">
-              <span><strong>Name</strong></span>
-            </label>
-            <input id="edit_bookmark_name" type="text">
-            <label for="edit_bookmark_url">
-              <span><strong>URL</strong></span>
-            </label>
-            <input id="edit_bookmark_url" type="text">
-            <span></span>
-            <div class="btn-wrapper">
-              <label for="modal-toggle" class="close-button">
-                <span>Cancel</span>
-              </label>
-              <button id="saveButton">
-                <span>Save</span>
-              </button>
-            </div>
-          </fieldset>
-        </div>
+      <div class="modal-box" id="modalBox">
       </div>
     </div>
   </div>
+
+  <!-- Template for editing a bookmark -->
+  <template id="edit_bookmark_template">
+    <div id="edit_bookmark" class="modal-content">
+      <h3>Edit Bookmark</h3>
+      <fieldset>
+        <label for="edit_bookmark_name">
+          <span><strong>Name</strong></span>
+        </label>
+        <input id="edit_bookmark_name" type="text">
+        <label for="edit_bookmark_url">
+          <span><strong>URL</strong></span>
+        </label>
+        <input id="edit_bookmark_url" type="text">
+        <span></span>
+        <div class="btn-wrapper">
+          <label for="modal-toggle" class="close-button">
+            <span>Cancel</span>
+          </label>
+          <button id="saveButton">
+            <span>Save</span>
+          </button>
+        </div>
+      </fieldset>
+    </div>
+  </template>
+
+  <template id="add_to_folder_template">
+    <div id="add_to_folder" class="modal-content">
+      <h3>Add to Folder</h3>
+    </div>
+  </template>
   <script src="keepmarks.js"></script>
 </body>
 

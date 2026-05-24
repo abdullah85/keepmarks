@@ -35,7 +35,7 @@ body {
 	line-height: 2;
 	text-decoration: none;
 	color: #555;
-	padding: 0 .8em;
+	padding: 0 0em .25em .8em;
 	border-radius: .2em;
 	cursor: pointer;
 	transition-property: color, background-color, box-shadow, opacity;
@@ -73,7 +73,10 @@ body {
 	box-sizing: border-box;
 	padding: 10px 0 20px 0;
 	min-height: 300px;
+  max-height: 85vh;
+  overflow-y: auto;
 }
+
 #main .empty {
 	opacity: 0.5;
 }
@@ -265,7 +268,8 @@ body {
 #edit_bookmark input{
   width: 90%;
   margin: 5px 0px 9px 15px;
-  padding: 3px;
+  padding: 11px 7px;
+  font-size: 13pt;
 }
 
 #edit_bookmark span{
@@ -336,6 +340,55 @@ input[type="file"]::-webkit-file-upload-button {
 }
 .empty .icon {
 	display: none;
+}
+
+.folder .pencil, a .pencil, .folder .plus, a .plus {
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: paleturquoise;
+  display: none;
+}
+
+.folder .pencil {
+  margin: 0px 5px 0px 11px;
+}
+
+.folder .plus {
+  margin: 0px 5px 0px 0px;
+}
+
+a .pencil {
+  margin: 0px 5px 0px 11px;
+}
+
+
+.folder:hover .pencil, .folder:hover .plus, a:hover .pencil {
+  display: inline-block;
+}
+
+.pencil:hover, .plus:hover {
+  background-color: white;
+}
+
+.extracted .pencil, .extracted .plus {
+  display: none;
+}
+
+.extracted:hover .pencil, .extracted:hover .plus {
+  display: none;
+  padding: 0 0.8em;
+}
+
+.extracted:hover {
+  padding: 0 0.8em;
+}
+
+li:hover .extracted {
+  background-image: none;
+  background-color: white;
 }
 
 /* The following icons are copyright (c) 2012 The Chromium Authors.

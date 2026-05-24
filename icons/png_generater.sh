@@ -19,5 +19,5 @@ mkdir -p generated/$fName
 for x in ${sizes[@]}; do
     echo inkscape $svg_file -w $x -h $x -o generated/$fName/icon_$x.png;
     inkscape $svg_file -w $x -h $x -o generated/$fName/icon_$x.png;    
-    cp generated/$fName/icon_$x.png .
+#    cp generated/$fName/icon_$x.png .
 done

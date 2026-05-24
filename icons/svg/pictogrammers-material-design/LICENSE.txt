@@ -1,0 +1,4 @@
+Author: Pictogrammers
+License: Apache 2.0 (No attribution required, commercial use is allowed)
+Icons grid: 24
+

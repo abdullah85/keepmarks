@@ -1,5 +1,9 @@
 'use strict';
 
+const svg_pencil = "icons/svg/pictogrammers-material-design/mdi--pencil.svg"
+const svg_plus = "icons/svg/pictogrammers-material-design/mdi--plus.svg"
+const svg_plus_thick = "icons/svg/pictogrammers-material-design/mdi--plus-thick.svg"
+
 // render a single bookmark node
 function render(node, target, toplevel) {
   if (node.description == 'separator') return;
@@ -21,6 +25,21 @@ function render(node, target, toplevel) {
   if (node.tooltip) a.title = node.tooltip;
   setClass(a, node);
 
+
+  if(node.children){
+    // a.insertBefore(getAddIcon(node), a.firstChild)
+    a.appendChild(getPencilIcon(node));
+    a.appendChild(getAddIcon(node))
+  } else {
+    var editBookmarkBtn = getPencilIcon(node);
+    a.appendChild(editBookmarkBtn);
+    editBookmarkBtn.addEventListener("click", function(evt){
+      console.log('Event type: ' + evt.type);
+      editBookmark(node.id, a);
+      // evt.stopPropagation();
+    })
+  }
+  // a.insertBefore(getPencilIcon(node), a.firstChild);
   a.insertBefore(getIcon(node), a.firstChild);
 
   if (node.action) {
@@ -151,12 +170,20 @@ function editBookmark(id, a) {
   var elem = document.querySelector('[data-id="' + id + '"]');
   // Ideally, elem will be set correctly for the bookmark
   if (!elem) return;
+  var editBookmarkTemplate = document.getElementById('edit_bookmark_template');
+  var editBookmarkClone = document.importNode(editBookmarkTemplate, true);
+  var modalBox = document.getElementById('modalBox');
+  modalBox.innerHTML = editBookmarkClone.innerHTML;
+
   var name = document.getElementById('edit_bookmark_name');
   name.value = elem.innerText;
   name.dataset.id = id;
   var url = document.getElementById('edit_bookmark_url');
   url.value = a.href;
   modalToggle.checked = true;
+  document.getElementById('saveButton').addEventListener("click", function() {
+    saveBookmark();
+  })
 }
 
 function deleteBookmark(id, a) {
@@ -703,6 +730,24 @@ function setClass(target, node, isopen) {
     target.classList.add(node.id);
 }
 
+function getAddIcon(node) {
+  var icon = document.createElement('img');
+  icon.className='plus';
+  icon.alt = 'add an element to folder';
+  icon.src = svg_plus
+  // icon.appendChild(btn)
+  return icon;
+}
+
+function getPencilIcon(node) {
+  var icon = document.createElement('img');
+  icon.className='pencil';
+  icon.alt = 'pencil icon for editing';
+  icon.src = svg_pencil
+  // icon.appendChild(btn)
+  return icon;
+}
+
 // gets best icon for a node
 function getIcon(node) {
   var url = null,
@@ -997,7 +1042,7 @@ window.onresize = function (event) {
   updateTooltips();
 };
 
-document.getElementById('saveButton').onclick = function () {
+function saveBookmark() {
   var name = document.getElementById('edit_bookmark_name');
   var url = document.getElementById('edit_bookmark_url');
   if (!name?.dataset?.id) return;
