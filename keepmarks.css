@@ -28,6 +28,7 @@ body {
 #main a {
 	box-sizing: border-box;
 	max-width: 100%;
+  width: 97%;
 	display: inline-block;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -347,25 +348,28 @@ input[type="file"]::-webkit-file-upload-button {
   width: 16px;
   height: 16px;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 15%;
+  box-shadow: 0px 0px 1.15px teal;
   background-color: paleturquoise;
   display: none;
+  float: inline-end;
 }
 
 .folder .pencil {
-  margin: 0px 5px 0px 11px;
+  margin: 5px 0px 0px 11px;  
+
 }
 
 .folder .plus {
-  margin: 0px 5px 0px 0px;
+  margin: 5px 5px 0px 7px;  
 }
 
 a .pencil {
-  margin: 0px 5px 0px 11px;
+  margin: 5px 5px 0px 11px;
 }
 
 
-.folder:hover .pencil, .folder:hover .plus, a:hover .pencil {
+.folder:hover .plus, .folder:hover .pencil, a:hover .pencil {
   display: inline-block;
 }
 

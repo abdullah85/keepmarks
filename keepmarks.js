@@ -26,20 +26,30 @@ function render(node, target, toplevel) {
   setClass(a, node);
 
 
-  if(node.children){
+  if (node.children) {
     // a.insertBefore(getAddIcon(node), a.firstChild)
-    a.appendChild(getPencilIcon(node));
-    a.appendChild(getAddIcon(node))
+    var addToFolder = getAddIcon(node)
+    addToFolder.addEventListener("click", function (evt) {
+      evt.stopPropagation();
+    });
+    a.appendChild(addToFolder);
+
+    var editBookmarkFolder = getPencilIcon(node);
+    editBookmarkFolder.addEventListener("click", function (evt) {
+      evt.stopPropagation();
+    });
+    a.appendChild(editBookmarkFolder);
+
   } else {
     var editBookmarkBtn = getPencilIcon(node);
     a.appendChild(editBookmarkBtn);
-    editBookmarkBtn.addEventListener("click", function(evt){
+    editBookmarkBtn.addEventListener("click", function (evt) {
       console.log('Event type: ' + evt.type);
       editBookmark(node.id, a);
       // evt.stopPropagation();
     })
   }
-  // a.insertBefore(getPencilIcon(node), a.firstChild);
+
   a.insertBefore(getIcon(node), a.firstChild);
 
   if (node.action) {
