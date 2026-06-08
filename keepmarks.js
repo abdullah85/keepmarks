@@ -44,9 +44,9 @@ function render(node, target, toplevel) {
     var editBookmarkBtn = getPencilIcon(node);
     a.appendChild(editBookmarkBtn);
     editBookmarkBtn.addEventListener("click", function (evt) {
-      console.log('Event type: ' + evt.type);
+      evt.preventDefault();
+      evt.stopPropagation();
       editBookmark(node.id, a);
-      // evt.stopPropagation();
     })
   }
 
