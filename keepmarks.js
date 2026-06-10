@@ -37,6 +37,22 @@ function render(node, target, toplevel) {
     var editBookmarkFolder = getPencilIcon(node);
     editBookmarkFolder.addEventListener("click", function (evt) {
       evt.stopPropagation();
+      console.log('Editing bookmark folder.')
+      let bookmarkFolder = document.querySelector(`[data-id="${node.id}"]`);
+      let currentName = bookmarkFolder.textContent;
+
+      const input = document.createElement('input');
+      input.value = currentName;
+      bookmarkFolder.childNodes[1].replaceWith(input);
+      input.focus();
+
+      input.addEventListener('blur', () => {
+        const span = document.createElement('span');
+        span.className = 'folder-name';
+        span.textContent = input.value.trim() || currentName;
+
+        input.replaceWith(span);
+      });
     });
     a.appendChild(editBookmarkFolder);
 
@@ -191,7 +207,7 @@ function editBookmark(id, a) {
   var url = document.getElementById('edit_bookmark_url');
   url.value = a.href;
   modalToggle.checked = true;
-  document.getElementById('saveButton').addEventListener("click", function() {
+  document.getElementById('saveButton').addEventListener("click", function () {
     saveBookmark();
   })
 }
@@ -294,8 +310,8 @@ function addFolderHandlers(node, a, extracted) {
           removeRow(pos.x, pos.y);
         }
       });
-  } 
-  
+  }
+
   if (extracted && coords[node.id] && root.indexOf(node.id) < 0) {
     var pos = coords[node.id]
     items.push({
@@ -742,7 +758,7 @@ function setClass(target, node, isopen) {
 
 function getAddIcon(node) {
   var icon = document.createElement('img');
-  icon.className='plus';
+  icon.className = 'plus';
   icon.alt = 'add an element to folder';
   icon.src = svg_plus
   // icon.appendChild(btn)
@@ -751,7 +767,7 @@ function getAddIcon(node) {
 
 function getPencilIcon(node) {
   var icon = document.createElement('img');
-  icon.className='pencil';
+  icon.className = 'pencil';
   icon.alt = 'pencil icon for editing';
   icon.src = svg_pencil
   // icon.appendChild(btn)
